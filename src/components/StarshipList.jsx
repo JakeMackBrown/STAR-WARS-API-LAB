@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const StarshipList = () => {
   const [starships, setStarships] = useState([]);
@@ -11,11 +12,15 @@ const StarshipList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Starships</h2>
+    <div className="starship">
+      <h2>List of Starships</h2>
       <ul>
-        {starships.map(starship => (
-          <li key={starship.name}>{starship.name}</li>
+        {starships.map((starship, index) => (
+          <li key={index}>
+            <Link to={`/starships/${index + 1}`}>
+              <h3>{starship.name}</h3>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

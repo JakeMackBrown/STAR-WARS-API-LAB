@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Planets = () => {
   const [planets, setPlanets] = useState([]);
@@ -11,11 +12,15 @@ const Planets = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Planets</h2>
+    <div className="planets">
+      <h2>List of Planets</h2>
       <ul>
-        {planets.map(planet => (
-          <li key={planet.name}>{planet.name}</li>
+        {planets.map((planet, index) => (
+          <li key={index}>
+            <Link to={`/planets/${index + 1}`}>
+              <h3>{planet.name}</h3>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>
